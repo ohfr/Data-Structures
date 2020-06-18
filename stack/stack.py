@@ -9,6 +9,8 @@ return elements in Last In First Out order.
    Make sure the Stack tests pass.
 3. What is the difference between using an array vs. a linked list when 
    implementing a Stack?
+
+   takes longer to find node before tail with linked list
 """
 # class Stack:
 #     def __init__(self):
@@ -37,7 +39,6 @@ class Node:
         self.next = next
 
 class Stack:
-
     def __init__(self):
         self.size = 0
         self.tail = None
