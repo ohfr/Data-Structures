@@ -34,47 +34,69 @@ return elements in Last In First Out order.
 
 
 class Node:
-    def __init__(self, value=None, next=None):
+    def __init__(self, value=None, next_node=None):
         self.value = value
-        self.next = next
+        self.next_node = next_node
+
+# class Stack:
+#     def __init__(self):
+#         self.size = 0
+#         self.tail = None
+#         self.head = None
+
+#     def __len__(self):
+#         return self.size
+    
+#     def push(self, value):
+#         newNode = Node(value)
+#         self.size +=1
+
+#         if not self.head and not self.tail:
+#             self.head = newNode
+#             self.tail = newNode
+#         else:
+#             self.tail.next = newNode
+#             self.tail = newNode
+    
+#     def pop(self):
+#         if not self.head:
+#             return None
+#         elif self.head.next is None:
+#             self.size -=1
+#             item = self.head.value
+#             self.head = None
+#             return item
+#         else:
+#             self.size -=1
+#             item = self.tail.value
+#             cur = self.head
+
+#             while cur.next != None:
+#                 if cur.next == self.tail:
+#                     self.tail = cur
+#                     cur.next = None
+#                     break
+#                 cur = cur.next
+#             return item
+
+from singly_linked_list.singly_linked_list import LinkedList
+
 
 class Stack:
     def __init__(self):
         self.size = 0
-        self.tail = None
-        self.head = None
+        self.storage = List.LinkedList()
 
     def __len__(self):
         return self.size
     
     def push(self, value):
-        newNode = Node(value)
         self.size +=1
+        self.storage.add_to_head(value)
 
-        if not self.head and not self.tail:
-            self.head = newNode
-            self.tail = newNode
-        else:
-            self.tail.next = newNode
-            self.tail = newNode
-    
     def pop(self):
-        if not self.head:
+        if self.size == 0:
             return None
-        elif self.head.next is None:
-            self.size -=1
-            item = self.head.value
-            self.head = None
-            return item
-        else:
-            self.size -=1
-            item = self.tail.value
-            cur = self.head
-
-            while cur.next != None:
-                if cur.next == self.tail:
-                    self.tail = cur
-                    cur.next = None
-                    break
-                cur = cur.next
-            return item
+        self.size -=1
+        item = self.storage.remove_head()
+        return item

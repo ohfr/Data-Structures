@@ -33,42 +33,65 @@ Stretch: What if you could only use instances of your Stack class to implement t
 #         else:
 #             return None
 
+from singly_linked_list import LinkedList
+
 class Node:
     def __init__(self, value=None, next_node=None):
         self.value = value
         self.next_node = next_node
 
+# class Queue:
+#     def __init__(self):
+#         self.size = 0
+#         self.head = None
+#         self.tail = None
+    
+#     def __len__(self):
+#         return self.size
+
+#     def enqueue(self, value):
+#         newNode = Node(value)
+#         self.size +=1
+
+#         if not self.head and not self.tail:
+#             self.head = newNode
+#             self.tail = newNode
+#         else:
+#             self.tail.next_node = newNode
+#             self.tail = newNode
+
+#     def dequeue(self):
+#         if not self.head:
+#             return None
+#         elif self.head.next_node is None:
+#             self.size -= 1
+#             item = self.head.value
+#             self.head = None
+#             self.tail = None
+#             return item
+#         else:
+#             self.size -= 1
+#             item = self.head.value
+#             self.head = self.head.next_node
+#             return item
+
+
 class Queue:
     def __init__(self):
         self.size = 0
-        self.head = None
-        self.tail = None
+        self.storage = LinkedList()
     
     def __len__(self):
         return self.size
 
     def enqueue(self, value):
-        newNode = Node(value)
-        self.size +=1
-
-        if not self.head and not self.tail:
-            self.head = newNode
-            self.tail = newNode
-        else:
-            self.tail.next_node = newNode
-            self.tail = newNode
+       self.size += 1
+       self.storage.add_to_tail(value)
 
     def dequeue(self):
-        if not self.head:
+        if self.size == 0:
             return None
-        elif self.head.next_node is None:
-            self.size -= 1
-            item = self.head.value
-            self.head = None
-            self.tail = None
-            return item
-        else:
-            self.size -= 1
-            item = self.head.value
-            self.head = self.head.next_node
-            return item
+        
+        self.size -=1
+        val = self.storage.remove_head()
+        return val

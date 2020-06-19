@@ -12,7 +12,7 @@ Answer the following questions for each of the data structures you implemented a
     constant
 
 4. What is the runtime complexity of `pop` using a linked list?
-    linear
+    constant
 
 5. What is the runtime complexity of `len` using a list?
     constant 
