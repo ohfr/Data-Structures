@@ -140,16 +140,20 @@ class DoublyLinkedList:
                     self.head = node
                     self.length +=1
                 else:
-                    prev = node.prev
-                    nextNode = node.next
+                    # prev = node.prev
+                    # nextNode = node.next
                     
-                    nextNode.prev = prev
-                    prev.next = nextNode
+                    # nextNode.prev = prev
+                    # prev.next = nextNode
 
-                    self.head.prev = node
-                    node.next = self.head
-                    node.prev = None
-                    self.head = node
+                    # self.head.prev = node
+                    # node.next = self.head
+                    # node.prev = None
+                    # self.head = node
+                    nodeValue = node.value
+                    self.delete(node)
+                    self.add_to_head(nodeValue)
+
             else:
                 return
         else:
@@ -171,16 +175,19 @@ class DoublyLinkedList:
                     self.tail = node
                     self.length +=1
                 else:
-                    prev = node.prev
-                    nextNode = node.next
+                    # prev = node.prev
+                    # nextNode = node.next
                     
-                    nextNode.prev = prev
-                    prev.next = nextNode
+                    # nextNode.prev = prev
+                    # prev.next = nextNode
 
-                    self.tail.next = node
-                    node.prev = self.tail
-                    self.tail = node
-                    self.tail.next = None
+                    # self.tail.next = node
+                    # node.prev = self.tail
+                    # self.tail = node
+                    # self.tail.next = None
+                    nodeValue = node.value
+                    self.delete(node)
+                    self.add_to_tail(nodeValue)
         else:
             self.length +=1
             self.head = node
@@ -189,11 +196,15 @@ class DoublyLinkedList:
     """Removes a node from the list and handles cases where
     the node was the head or the tail"""
     def delete(self, node):
+        if not self.head:
+            return
+
         if node == self.head:
             self.remove_from_head()
         elif node == self.tail:
             self.remove_from_tail()
         else:
+            self.length -=1
             prev = node.prev
             nextNode = node.next
             prev.next = node.next
