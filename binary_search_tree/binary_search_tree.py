@@ -80,11 +80,21 @@ class BSTNode:
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
-        fn(self.value)
+        # fn(self.value)
         
+        # if self.left:
+        #     self.left.for_each(fn)
+        
+        # if self.right:
+        #     self.right.for_each(fn)
+        
+
+        # in order version!
         if self.left:
             self.left.for_each(fn)
-        
+
+        fn(self.value)
+
         if self.right:
             self.right.for_each(fn)
         
@@ -94,17 +104,63 @@ class BSTNode:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        self.for_each(print)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        # create a queue for nodes
+        # add first node to queue
+        # while queue is not empy
+            # remove first node from the queue
+            # print removed node
+            # add all children to queue
+
+        # qe = Queue()
+
+        # qe.enqueue(node)
+        # while qe.size is not 0:
+        #     cur = qe.dequeue()
+        #     print(cur)
+        #     if cur.left:
+        #         qe.enqueue(cur.left)
+        #     if cur.right:
+        #         qe.enqueue(cur.right)
+        q = []
+
+        q.append(node)
+
+        while q:
+            cur = q.pop(0)
+            print(cur.value)
+            if cur.left:
+                q.append(cur.left)
+            if cur.right:
+                q.append(cur.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
         pass
+        # create stack
+        # add first node to stack
+        # while stack is not empty
+        # get current node from top of stack
+        # print node
+        # add all children of node to stack
+        # ORDER OF CHILDREN WILL MATTER
+
+        stack = []
+
+        stack.append(node)
+
+        while stack:
+            cur = stack.pop(-1)
+            print(cur.value)
+            if cur.left:
+                stack.append(cur.left)
+            if cur.right:
+                stack.append(cur.right)
 
     # Stretch Goals -------------------------
     # Note: Research may be required
@@ -116,3 +172,4 @@ class BSTNode:
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
         pass
+
